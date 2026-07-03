@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="title" content="乔尚智 - Java高级开发工程师 | 7年经验 | 高并发 & 分布式系统">
+<meta name="description" content="乔尚智，7年Java开发经验，深耕高并发、JVM调优、MySQL优化、分布式架构。具备订单中台、物流管理平台等大型电商项目实战经验。熟悉Spring Cloud、Kafka、Redis、微服务架构。">
+<meta name="keywords" content="乔尚智,Java高级开发,Java,Spring Cloud,Kafka,Redis,JVM调优,高并发,分布式,微服务,订单中台,物流平台,后端工程师,简历">
+<meta name="author" content="乔尚智">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="乔尚智 - Java高级开发工程师">
+<meta property="og:description" content="7年Java开发经验，深耕高并发、JVM调优、MySQL优化、分布式架构。具备订单中台、物流管理平台等大型电商项目实战经验。">
+<meta property="og:type" content="website">
+<title>乔尚智 | Java高级开发工程师</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>⚡</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        bg: '#0d1117',
+        cyan: '#58a6ff',
+        purple: '#bc8cff',
+        'cyan-dim': 'rgba(88,166,255,0.1)',
+        'purple-dim': 'rgba(188,140,255,0.1)',
+      },
+      fontFamily: {
+        heading: ['Playfair Display', 'serif'],
+        body: ['Fira Code', 'monospace'],
+      }
+    }
+  }
+}
+</script>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Fira Code',monospace; background:#0d1117; color:#c9d1d9; overflow-x:hidden; }
+
+  /* Loading screen */
+  #loader {
+    position:fixed; inset:0; z-index:9999; background:#0d1117;
+    display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1.5rem;
+    transition:opacity 0.6s ease, visibility 0.6s ease;
+  }
+  #loader.hidden { opacity:0; visibility:hidden; pointer-events:none; }
+  .loader-spinner {
+    width:48px; height:48px; border:3px solid #30363d; border-top-color:#58a6ff;
+    border-radius:50%; animation:spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  /* Glass morphism */
+  .glass {
+    background:rgba(22,27,34,0.7); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(88,166,255,0.12); border-radius:12px;
+  }
+
+  /* Terminal window */
+  .term-header {
+    display:flex; gap:6px; padding:10px 14px; border-bottom:1px solid rgba(88,166,255,0.1);
+    background:rgba(13,17,23,0.6); border-radius:12px 12px 0 0;
+  }
+  .term-dot { width:10px; height:10px; border-radius:50%; }
+  .term-dot.r { background:#ff5f57; }
+  .term-dot.y { background:#febc2e; }
+  .term-dot.g { background:#28c840; }
+
+  /* Typewriter */
+  .typewriter::after {
+    content:'|'; font-weight:100; color:#58a6ff;
+    animation:blink 0.8s step-end infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  /* Scroll animation */
+  .reveal { opacity:0; transform:translateY(30px); transition:all 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  /* Sidebar link hover */
+  .nav-link {
+    position:relative; color:#8b949e; transition:color 0.3s;
+  }
+  .nav-link:hover,.nav-link.active { color:#58a6ff; }
+  .nav-link::after {
+    content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px;
+    background:linear-gradient(90deg,#58a6ff,#bc8cff); transition:width 0.3s;
+  }
+  .nav-link:hover::after,.nav-link.active::after { width:100%; }
+
+  /* Counter animation */
+  .counter { font-variant-numeric:tabular-nums; }
+
+  /* Timeline */
+  .timeline-line::before {
+    content:''; position:absolute; left:0; top:0; bottom:0; width:2px;
+    background:linear-gradient(180deg,#58a6ff,#bc8cff);
+  }
+  .timeline-dot::before {
+    content:''; position:absolute; left:-5px; top:6px; width:12px; height:12px;
+    border-radius:50%; background:#58a6ff; border:2px solid #0d1117;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width:6px; }
+  ::-webkit-scrollbar-track { background:#0d1117; }
+  ::-webkit-scrollbar-thumb { background:#30363d; border-radius:3px; }
+  ::-webkit-scrollbar-thumb:hover { background:#58a6ff; }
+
+  /* Print */
+  @media print {
+    #sidebar, #loader { display:none !important; }
+    body { background:#fff; color:#000; }
+    .glass { border:1px solid #ddd; background:#fff; box-shadow:none; }
+  }
+
+  @media (max-width:1023px) {
+    #sidebar { transform:translateX(-100%); transition:transform 0.3s; }
+    #sidebar.open { transform:translateX(0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-spinner"></div>
+  <p class="text-cyan/70 font-body text-sm">LOADING...</p>
+</div>
+
+<!-- Mobile overlay -->
+<div id="overlay" class="fixed inset-0 bg-black/60 z-40 hidden lg:hidden" onclick="toggleSidebar()"></div>
+
+<!-- ===== SIDEBAR ===== -->
+<aside id="sidebar" class="fixed top-0 left-0 h-full w-64 z-50 glass border-r border-cyan/10 flex flex-col p-6">
+  <div class="mb-10">
+    <h1 class="font-heading text-2xl font-bold bg-gradient-to-r from-cyan to-purple bg-clip-text text-transparent">QIAO SHANGZHI</h1>
+    <p class="text-sm text-cyan/70 mt-1 font-body">Java 高级开发</p>
+  </div>
+  <nav class="flex flex-col gap-4">
+    <a href="#hero" class="nav-link active font-body text-sm"><span class="text-cyan">~/</span>home</a>
+    <a href="#about" class="nav-link font-body text-sm"><span class="text-cyan">~/</span>about</a>
+    <a href="#experience" class="nav-link font-body text-sm"><span class="text-cyan">~/</span>experience</a>
+    <a href="#tech" class="nav-link font-body text-sm"><span class="text-cyan">~/</span>tech-stack</a>
+    <a href="#contact" class="nav-link font-body text-sm"><span class="text-cyan">~/</span>contact</a>
+  </nav>
+  <div class="mt-auto">
+    <p class="text-xs text-gray-500 font-body">&copy; 2026 乔尚智</p>
+  </div>
+</aside>
+
+<!-- Mobile hamburger -->
+<button onclick="toggleSidebar()" class="fixed top-4 left-4 z-50 lg:hidden glass p-2 rounded-lg">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#58a6ff" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+</button>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="lg:ml-64 min-h-screen">
+
+  <!-- HERO -->
+  <section id="hero" class="min-h-screen flex items-center justify-center px-6 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.03]" style="background-image:radial-gradient(circle at 50% 50%,#58a6ff 1px,transparent 1px);background-size:40px 40px;"></div>
+    <div class="text-center relative z-10">
+      <p class="font-body text-cyan/60 text-sm mb-4 tracking-widest uppercase">Hello, World!</p>
+      <h2 class="font-heading text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan via-purple to-cyan bg-clip-text text-transparent">乔尚智</h2>
+      <h3 class="text-xl md:text-2xl font-body mb-2 text-gray-300">Java 高级开发工程师</h3>
+      <p class="text-lg font-body typewriter inline-block" id="typewriter"></p>
+      <div class="mt-8 flex gap-4 justify-center">
+        <a href="#contact" class="px-6 py-2.5 glass text-cyan font-body text-sm hover:bg-cyan-dim transition-all duration-300">Contact</a>
+        <a href="#experience" class="px-6 py-2.5 glass text-purple font-body text-sm hover:bg-purple-dim transition-all duration-300">Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-24 px-6 max-w-4xl mx-auto reveal">
+    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4"><span class="text-cyan">#</span> About Me</h2>
+    <p class="font-body text-gray-400 leading-relaxed mb-12">具备7年Java开发经验，深耕高并发、复杂业务场景处理，对Java底层原理、JVM调优、MySQL优化及中间件应用有深入研究与实战积累。熟悉电商核心业务流程，在订单中台、物流管理等项目中主导关键模块开发。具备良好的沟通能力与团队合作意识，积极乐观且抗压能力强。</p>
+
+    <!-- Counters -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+      <div class="glass p-6 text-center">
+        <div class="text-3xl font-bold text-cyan counter" data-target="7">0</div>
+        <p class="text-xs text-gray-500 mt-2 font-body">Years Experience</p>
+      </div>
+      <div class="glass p-6 text-center">
+        <div class="text-3xl font-bold text-purple counter" data-target="100000">0</div>
+        <p class="text-xs text-gray-500 mt-2 font-body">Daily Orders</p>
+      </div>
+      <div class="glass p-6 text-center">
+        <div class="text-3xl font-bold text-cyan counter" data-target="40">0</div>
+        <p class="text-xs text-gray-500 mt-2 font-body">% Response Faster</p>
+      </div>
+      <div class="glass p-6 text-center">
+        <div class="text-3xl font-bold text-purple counter" data-target="10">0</div>
+        <p class="text-xs text-gray-500 mt-2 font-body">Courier APIs</p>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="glass p-6">
+      <h3 class="font-heading text-lg font-bold text-cyan mb-3">Education</h3>
+      <p class="font-body text-sm text-gray-300">九江职业技术学院 — 计算机应用 (专科统招) — 2015.09 ~ 2018.07</p>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="py-24 px-6 max-w-4xl mx-auto reveal">
+    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12"><span class="text-cyan">#</span> Experience</h2>
+
+    <!-- Timeline -->
+    <div class="relative timeline-line pl-8 space-y-12">
+      <!-- Company: 大恒 -->
+      <div class="relative timeline-dot reveal">
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          <span class="font-body text-xs text-cyan bg-cyan-dim px-2 py-0.5 rounded">2018.08 - 2024.12</span>
+          <span class="text-gray-500 font-body text-xs">|</span>
+          <span class="font-body text-sm text-gray-300">北京大恒实业有限公司</span>
+        </div>
+        <p class="font-body text-xs text-gray-500">Java 开发</p>
+
+        <!-- Project Card: 订单中台 -->
+        <div class="glass p-5 mt-4">
+          <h3 class="font-heading text-lg font-bold text-purple mb-2">i百联电商平台 - 订单中台</h3>
+          <p class="font-body text-xs text-gray-400 mb-3">Spring Cloud Alibaba · SpringBoot · Redis · MySQL · Kafka · Mybatis · Redisson</p>
+          <p class="font-body text-xs text-gray-500 leading-relaxed mb-3">
+            构建高并发、高可用的订单处理核心平台，处理高并发下单、异常订单及售后退换等场景。支撑百联线上线下融合业务（PC/H5/App/小程序），日均10万级订单处理能力。
+          </p>
+          <ul class="space-y-2">
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 参与设计订单控制中心模块，利用Kafka解耦下单流程与10+种订单后续处理，支撑日均10万级订单</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 基于Redis+Token机制设计订单防重提交方案，有效拦截重复订单</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 基于Redisson RDelayedQueue实现30分钟未支付订单自动关单，确保库存及时释放</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 基于CompletableFuture优化订单详情接口，10+张表聚合查询，响应时间降低40%+</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 618/双11大促7×24技术支持，快速定位线上故障（慢SQL、线程阻塞、缓存雪崩）</li>
+          </ul>
+        </div>
+
+        <!-- Project Card: 物流平台 -->
+        <div class="glass p-5 mt-4">
+          <h3 class="font-heading text-lg font-bold text-purple mb-2">i百联电商平台 - 物流管理平台</h3>
+          <p class="font-body text-xs text-gray-400 mb-3">Spring Cloud Alibaba · SpringBoot · Redis · MySQL · Kafka · Mybatis</p>
+          <p class="font-body text-xs text-gray-500 leading-relaxed mb-3">
+            集成顺丰、四通一达等10+快递公司API的全链路物流管理平台，实现物流轨迹实时同步、智能派单决策、异常主动预警的闭环管理。日均超10万单履约需求。
+          </p>
+          <ul class="space-y-2">
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 主导系统技术架构设计，拆分物流核心域（轨迹管理、派单决策、寄件服务）</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 开发物流信息采集模块，基于Kafka按"物流单号哈希"分区，确保轨迹消息有序</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 采用"增量拉取+主动推送"双机制，数据分片异步处理，同步延迟从10秒降至5秒内</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 基于工厂+适配器模式+配置中心对接多家快递公司，新增公司只需配置无需开发</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 设计派单规则引擎（区域、重量、保价等），实现订单自动分配，派单效率提升30%</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Company: 柯信 -->
+      <div class="relative timeline-dot reveal">
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          <span class="font-body text-xs text-cyan bg-cyan-dim px-2 py-0.5 rounded">2024.12 - Present</span>
+          <span class="text-gray-500 font-body text-xs">|</span>
+          <span class="font-body text-sm text-gray-300">柯信信息科技有限公司</span>
+        </div>
+        <p class="font-body text-xs text-gray-500">Java 高级开发</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section id="tech" class="py-24 px-6 max-w-4xl mx-auto reveal">
+    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12"><span class="text-cyan">#</span> Tech Stack</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Core -->
+      <div class="glass overflow-hidden">
+        <div class="term-header"><div class="term-dot r"></div><div class="term-dot y"></div><div class="term-dot g"></div></div>
+        <div class="p-4">
+          <p class="font-body text-xs text-cyan mb-3">$ cat core.log</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 text-[11px] font-body bg-cyan-dim text-cyan rounded">Java</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-cyan-dim text-cyan rounded">JVM调优</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-cyan-dim text-cyan rounded">GC优化</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-cyan-dim text-cyan rounded">并发编程</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-cyan-dim text-cyan rounded">线程池</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-cyan-dim text-cyan rounded">设计模式</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-cyan-dim text-cyan rounded">Linux</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Database -->
+      <div class="glass overflow-hidden">
+        <div class="term-header"><div class="term-dot r"></div><div class="term-dot y"></div><div class="term-dot g"></div></div>
+        <div class="p-4">
+          <p class="font-body text-xs text-purple mb-3">$ cat database.log</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 text-[11px] font-body bg-purple-dim text-purple rounded">MySQL</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-purple-dim text-purple rounded">InnoDB</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-purple-dim text-purple rounded">Redis</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-purple-dim text-purple rounded">哨兵模式</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-purple-dim text-purple rounded">缓存策略</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-purple-dim text-purple rounded">分布式锁</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-purple-dim text-purple rounded">SQL优化</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Framework -->
+      <div class="glass overflow-hidden">
+        <div class="term-header"><div class="term-dot r"></div><div class="term-dot y"></div><div class="term-dot g"></div></div>
+        <div class="p-4">
+          <p class="font-body text-xs text-cyan mb-3">$ cat framework.log</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 text-[11px] font-body bg-cyan-dim text-cyan rounded">SpringBoot</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-cyan-dim text-cyan rounded">SSM</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-cyan-dim text-cyan rounded">Spring Cloud</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-cyan-dim text-cyan rounded">Kafka</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-cyan-dim text-cyan rounded">Mybatis</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-cyan-dim text-cyan rounded">Redisson</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-cyan-dim text-cyan rounded">Nacos</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools -->
+      <div class="glass overflow-hidden">
+        <div class="term-header"><div class="term-dot r"></div><div class="term-dot y"></div><div class="term-dot g"></div></div>
+        <div class="p-4">
+          <p class="font-body text-xs text-purple mb-3">$ cat tools.log</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 text-[11px] font-body bg-purple-dim text-purple rounded">IDEA</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-purple-dim text-purple rounded">Maven</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-purple-dim text-purple rounded">Git</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-purple-dim text-purple rounded">Jenkins</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-purple-dim text-purple rounded">Jmeter</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-purple-dim text-purple rounded">Shell</span>
+            <span class="px-2.5 py-1 text-[11px] font-body bg-purple-dim text-purple rounded">Docker</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-24 px-6 max-w-4xl mx-auto reveal">
+    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12"><span class="text-cyan">#</span> Contact</h2>
+
+    <div class="glass p-8 text-center">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div>
+          <p class="font-body text-xs text-gray-500 mb-1">EMAIL</p>
+          <a href="mailto:1402219974@qq.com" class="font-body text-sm text-cyan hover:underline">1402219974@qq.com</a>
+        </div>
+        <div>
+          <p class="font-body text-xs text-gray-500 mb-1">PHONE</p>
+          <a href="tel:+8618146722227" class="font-body text-sm text-purple hover:underline">+86 181-4672-2227</a>
+        </div>
+        <div>
+          <p class="font-body text-xs text-gray-500 mb-1">LOCATION</p>
+          <span class="font-body text-sm text-gray-300">江西省 · 中国</span>
+        </div>
+      </div>
+      <button onclick="window.print()" class="px-6 py-2.5 glass text-cyan font-body text-sm hover:bg-cyan-dim transition-all duration-300">Print Resume</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 text-center border-t border-cyan/10">
+    <p class="font-body text-xs text-gray-600">乔尚智 © 2026 · Java 高级开发工程师</p>
+  </footer>
+
+</main>
+
+<script>
+// Loading screen
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('hidden'), 600);
+});
+
+// Sidebar toggle
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('hidden');
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Active nav
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 200) current = s.getAttribute('id');
+  });
+  navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + current));
+});
+
+// Typewriter
+const roles = ['Java Architect', 'JVM Tuner', 'Open Source Enthusiast'];
+let ri = 0, ci = 0, isDeleting = false;
+function type() {
+  const el = document.getElementById('typewriter');
+  const current = roles[ri];
+  if (!isDeleting) {
+    el.textContent = current.substring(0, ci + 1);
+    ci++;
+    if (ci === current.length) { setTimeout(() => isDeleting = true, 2000); return; }
+  } else {
+    el.textContent = current.substring(0, ci - 1);
+    ci--;
+    if (ci === 0) { isDeleting = false; ri = (ri + 1) % roles.length; return; }
+  }
+  setTimeout(type, isDeleting ? 50 : 100);
+}
+type();
+
+// Counters
+function animateCounter(el) {
+  const target = +el.dataset.target;
+  const suffix = target >= 100 ? '' : '';
+  const duration = 1500, step = target / (duration / 16);
+  let current = 0;
+  const timer = setInterval(() => {
+    current += step;
+    if (current >= target) { el.textContent = formatNum(target); clearInterval(timer); return; }
+    el.textContent = formatNum(Math.floor(current));
+  }, 16);
+}
+function formatNum(n) {
+  if (n >= 100000) return '100K+';
+  if (n >= 1000) return (n/1000).toFixed(0) + 'K+';
+  return n + (n <= 40 ? '%' : n === 10 ? '+' : '');
+}
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { animateCounter(e.target); counterObs.unobserve(e.target); } });
+}, { threshold: 0.5 });
+document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
+</script>
+
+</body>
+</html>
