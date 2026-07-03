@@ -145,6 +145,7 @@ tailwind.config = {
     <a href="#hero" class="nav-link active font-body text-sm"><span class="text-cyan">~/</span>home</a>
     <a href="#about" class="nav-link font-body text-sm"><span class="text-cyan">~/</span>about</a>
     <a href="#experience" class="nav-link font-body text-sm"><span class="text-cyan">~/</span>experience</a>
+    <a href="#projects" class="nav-link font-body text-sm"><span class="text-cyan">~/</span>projects</a>
     <a href="#tech" class="nav-link font-body text-sm"><span class="text-cyan">~/</span>tech-stack</a>
     <a href="#contact" class="nav-link font-body text-sm"><span class="text-cyan">~/</span>contact</a>
   </nav>
@@ -185,7 +186,7 @@ tailwind.config = {
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
       <div class="glass p-6 text-center">
         <div class="text-3xl font-bold text-cyan counter" data-target="7">0</div>
-        <p class="text-xs text-gray-500 mt-2 font-body">Years Experience</p>
+        <p class="text-xs text-gray-500 mt-2 font-body">年开发经验 （Years Experience）</p>
       </div>
       <div class="glass p-6 text-center">
         <div class="text-3xl font-bold text-purple counter" data-target="100000">0</div>
@@ -197,23 +198,33 @@ tailwind.config = {
       </div>
       <div class="glass p-6 text-center">
         <div class="text-3xl font-bold text-purple counter" data-target="10">0</div>
-        <p class="text-xs text-gray-500 mt-2 font-body">Courier APIs</p>
+        <p class="text-xs text-gray-500 mt-2 font-body">快递接口接入 （Courier APIs）</p>
       </div>
     </div>
 
     <!-- Education -->
     <div class="glass p-6">
-      <h3 class="font-heading text-lg font-bold text-cyan mb-3">Education</h3>
+      <h3 class="font-heading text-lg font-bold text-cyan mb-3">教育背景 (Education)</h3>
       <p class="font-body text-sm text-gray-300">九江职业技术学院 — 计算机应用 (专科统招) — 2015.09 ~ 2018.07</p>
     </div>
   </section>
 
   <!-- EXPERIENCE -->
   <section id="experience" class="py-24 px-6 max-w-4xl mx-auto reveal">
-    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12"><span class="text-cyan">#</span> Experience</h2>
+    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12"><span class="text-cyan">#</span> 工作经历 (Experience)</h2>
 
     <!-- Timeline -->
     <div class="relative timeline-line pl-8 space-y-12">
+      <!-- Company: 柯信 -->
+      <div class="relative timeline-dot reveal">
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          <span class="font-body text-xs text-purple bg-purple-dim px-2 py-0.5 rounded">2024.12 - Present</span>
+          <span class="text-gray-500 font-body text-xs">|</span>
+          <span class="font-body text-sm text-gray-300">柯信信息科技有限公司</span>
+        </div>
+        <p class="font-body text-xs text-gray-500">Java 高级开发</p>
+      </div>
+
       <!-- Company: 大恒 -->
       <div class="relative timeline-dot reveal">
         <div class="flex flex-wrap items-center gap-2 mb-2">
@@ -222,48 +233,73 @@ tailwind.config = {
           <span class="font-body text-sm text-gray-300">北京大恒实业有限公司</span>
         </div>
         <p class="font-body text-xs text-gray-500">Java 开发</p>
+      </div>
+    </div>
+  </section>
 
-        <!-- Project Card: 订单中台 -->
-        <div class="glass p-5 mt-4">
-          <h3 class="font-heading text-lg font-bold text-purple mb-2">i百联电商平台 - 订单中台</h3>
-          <p class="font-body text-xs text-gray-400 mb-3">Spring Cloud Alibaba · SpringBoot · Redis · MySQL · Kafka · Mybatis · Redisson</p>
-          <p class="font-body text-xs text-gray-500 leading-relaxed mb-3">
-            构建高并发、高可用的订单处理核心平台，处理高并发下单、异常订单及售后退换等场景。支撑百联线上线下融合业务（PC/H5/App/小程序），日均10万级订单处理能力。
-          </p>
-          <ul class="space-y-2">
-            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 参与设计订单控制中心模块，利用Kafka解耦下单流程与10+种订单后续处理，支撑日均10万级订单</li>
-            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 基于Redis+Token机制设计订单防重提交方案，有效拦截重复订单</li>
-            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 基于Redisson RDelayedQueue实现30分钟未支付订单自动关单，确保库存及时释放</li>
-            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 基于CompletableFuture优化订单详情接口，10+张表聚合查询，响应时间降低40%+</li>
-            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 618/双11大促7×24技术支持，快速定位线上故障（慢SQL、线程阻塞、缓存雪崩）</li>
-          </ul>
+  <!-- PROJECTS -->
+  <section id="projects" class="py-24 px-6 max-w-4xl mx-auto reveal">
+    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12"><span class="text-purple">#</span> 项目经验 (Projects)</h2>
+
+    <div class="space-y-10">
+      <!-- Project: 订单中台 -->
+      <div class="glass p-6 reveal">
+        <div class="flex flex-wrap items-center gap-2 mb-3">
+          <h3 class="font-heading text-xl font-bold text-purple">i百联电商平台 - 订单中台</h3>
+          <span class="font-body text-xs text-cyan bg-cyan-dim px-2 py-0.5 rounded">2018.08 - 至今</span>
         </div>
-
-        <!-- Project Card: 物流平台 -->
-        <div class="glass p-5 mt-4">
-          <h3 class="font-heading text-lg font-bold text-purple mb-2">i百联电商平台 - 物流管理平台</h3>
-          <p class="font-body text-xs text-gray-400 mb-3">Spring Cloud Alibaba · SpringBoot · Redis · MySQL · Kafka · Mybatis</p>
-          <p class="font-body text-xs text-gray-500 leading-relaxed mb-3">
-            集成顺丰、四通一达等10+快递公司API的全链路物流管理平台，实现物流轨迹实时同步、智能派单决策、异常主动预警的闭环管理。日均超10万单履约需求。
+        <div class="mb-4">
+          <p class="font-body text-[11px] text-gray-500 mb-1">技术栈</p>
+          <p class="font-body text-xs text-gray-400">Spring Cloud Alibaba · SpringBoot · Redis · MySQL · Kafka · Mybatis · Redisson</p>
+        </div>
+        <div class="mb-4">
+          <p class="font-body text-[11px] text-gray-500 mb-1">项目描述</p>
+          <p class="font-body text-xs text-gray-400 leading-relaxed">
+            构建高并发、高可用的订单处理核心平台，处理高并发下单、异常订单（如支付超时、库存不足）及售后退换等场景，平衡用户体验与系统稳定性。支撑百联线上线下融合业务（PC/H5/App/小程序），处理自营及多商户模式的海量订单，目标是提升系统吞吐量、保证大促稳定性、优化异步处理流程，确保订单信息准确、交易安全可靠，同时通过支付对接、状态追踪等机制提升履约效率。有效解决重复下单、订单超时未支付等问题，支撑日均10万级订单处理能力。
           </p>
+        </div>
+        <div>
+          <p class="font-body text-[11px] text-gray-500 mb-2">个人职责</p>
           <ul class="space-y-2">
-            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 主导系统技术架构设计，拆分物流核心域（轨迹管理、派单决策、寄件服务）</li>
-            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 开发物流信息采集模块，基于Kafka按"物流单号哈希"分区，确保轨迹消息有序</li>
-            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 采用"增量拉取+主动推送"双机制，数据分片异步处理，同步延迟从10秒降至5秒内</li>
-            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 基于工厂+适配器模式+配置中心对接多家快递公司，新增公司只需配置无需开发</li>
-            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 设计派单规则引擎（区域、重量、保价等），实现订单自动分配，派单效率提升30%</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 参与设计并开发订单控制中心模块，利用Kafka消息队列解耦核心下单流程与实现10+种订单类型后续处理步骤，实现异步任务的有序调度，显著提升系统整体吞吐量，支撑日均10万级订单处理能力</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 负责设计并实现基于 Redis + Token 机制的订单防重提交方案，前端提交订单前先申请唯一Token，后端校验Token有效性并删除，有效拦截网络抖动、用户重复点击导致的重复订单创建问题</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 针对状态更新等高并发写操作，基于Redisson分布式锁保障关键资源访问的互斥性，解决数据一致性问题和并发BUG</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 基于Redisson的RDelayedQueue实现未支付订单的延迟关单任务，订单创建成功后按30分钟超时放入延迟队列，到期自动关单释放库存，确保库存及时释放</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 基于CompletableFuture优化订单详情接口，将订单表、促销表、商品明细、订单履历等10+张表聚合查询处理，关键接口平均响应时间降低40%+</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 为618、双11等线上大促活动提供7×24小时技术支持，快速定位并修复线上故障（慢SQL、线程阻塞、缓存雪崩），协助业务处理异常订单数据</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 识别并重构文件上传流程，基于工厂、策略等设计模式优化核心接口设计，降低模块间耦合度，提升团队协作效率</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 主导或协助排查线上环境复杂问题，如数据库死锁、连接池耗尽、GC频繁、缓存击穿/雪崩等，提出并实施有效解决方案</li>
           </ul>
         </div>
       </div>
 
-      <!-- Company: 柯信 -->
-      <div class="relative timeline-dot reveal">
-        <div class="flex flex-wrap items-center gap-2 mb-2">
-          <span class="font-body text-xs text-cyan bg-cyan-dim px-2 py-0.5 rounded">2024.12 - Present</span>
-          <span class="text-gray-500 font-body text-xs">|</span>
-          <span class="font-body text-sm text-gray-300">柯信信息科技有限公司</span>
+      <!-- Project: 物流管理平台 -->
+      <div class="glass p-6 reveal">
+        <div class="flex flex-wrap items-center gap-2 mb-3">
+          <h3 class="font-heading text-xl font-bold text-purple">i百联电商平台 - 物流管理平台</h3>
+          <span class="font-body text-xs text-cyan bg-cyan-dim px-2 py-0.5 rounded">2019.07 - 2020.01</span>
         </div>
-        <p class="font-body text-xs text-gray-500">Java 高级开发</p>
+        <div class="mb-4">
+          <p class="font-body text-[11px] text-gray-500 mb-1">技术栈</p>
+          <p class="font-body text-xs text-gray-400">Spring Cloud Alibaba · Spring Boot · Redis · MySQL · Kafka · Mybatis</p>
+        </div>
+        <div class="mb-4">
+          <p class="font-body text-[11px] text-gray-500 mb-1">项目描述</p>
+          <p class="font-body text-xs text-gray-400 leading-relaxed">
+            为支撑电商平台日均超10万单的订单履约需求，构建集成顺丰、四通一达等10+快递公司API的全链路物流管理平台，解决传统物流信息分散、派单效率低、用户寄件体验差等问题，实现物流轨迹实时同步、智能派单决策、异常主动预警的闭环管理。
+          </p>
+        </div>
+        <div>
+          <p class="font-body text-[11px] text-gray-500 mb-2">个人职责</p>
+          <ul class="space-y-2">
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 主导系统技术架构设计，拆分物流核心域（轨迹管理、派单决策、寄件服务），定义交互规范，保障模块解耦与可扩展性</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 开发物流信息采集模块，通过Kafka实现与其他内部系统对接获取物流订阅与物流完成通知，按"物流单号哈希"分区，确保同一物流单的轨迹消息有序，同时提升消费者并行度</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 采用"增量拉取+主动推送"双机制（快递公司API回调+定时补偿拉取），基于数据分片异步处理大量物流轨迹获取与去重操作，同步延迟从10秒降至5秒内，峰值期（日均30万条）稳定无堆积</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 基于工厂、适配器模式+配置中心(Nacos)与多家快递公司对接，将快递公司API参数、映射关系配置化，新增公司只需配置无需开发，统一的DTO转换层将各公司响应格式转为内部标准格式，隔离变化</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 参与设计派单规则，基于规则（区域、重量、是否保价等）计算运费并分配快递公司，实现订单自动分配，派单效率提升30%</li>
+            <li class="font-body text-xs text-gray-400"><span class="text-cyan">▸</span> 实现物流异常监控机制，通过实时推送物流超时、丢件等异常信息，基于规则触发告警；简单异常自动触发补发及补全请求，复杂异常记录处理流程交由客服处理，处理时效缩短50%</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -345,12 +381,12 @@ tailwind.config = {
 
   <!-- CONTACT -->
   <section id="contact" class="py-24 px-6 max-w-4xl mx-auto reveal">
-    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12"><span class="text-cyan">#</span> Contact</h2>
+    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12"><span class="text-cyan">#</span> 联系方式 (Contact)</h2>
 
     <div class="glass p-8 text-center">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div>
-          <p class="font-body text-xs text-gray-500 mb-1">EMAIL</p>
+          <p class="font-body text-xs text-gray-500 mb-1">邮箱 （EMAIL）</p>
           <a href="mailto:1402219974@qq.com" class="font-body text-sm text-cyan hover:underline">1402219974@qq.com</a>
         </div>
         <div>
@@ -362,7 +398,7 @@ tailwind.config = {
           <span class="font-body text-sm text-gray-300">江西省 · 中国</span>
         </div>
       </div>
-      <button onclick="window.print()" class="px-6 py-2.5 glass text-cyan font-body text-sm hover:bg-cyan-dim transition-all duration-300">Print Resume</button>
+      <button onclick="window.print()" class="px-6 py-2.5 glass text-cyan font-body text-sm hover:bg-cyan-dim transition-all duration-300">打印简历 （Print Resume）</button>
     </div>
   </section>
 
